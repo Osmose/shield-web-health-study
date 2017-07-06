@@ -5,10 +5,9 @@ This repository hosts a [Shield study](https://wiki.mozilla.org/Firefox/Shield/S
 When the user visits certain websites that are in support of healthy internet policies, they receive a message calling for action to support such policies. The user can take action by clicking a button and filling out a form that eventually will be submitted to FCC as comments on the recently proposed policy changes.
 
 ## Data Collection
-The `internet-policy-awareness` extension collects a participant's Firefox usage data that is related to her interaction with the messages, as well as metrics that could be correlated with her receptivity to those messages. In particular, it collects:
+The `internet-policy-study` extension collects a participant's Firefox usage data that is related to her interaction with the messages, as well as metrics that could be correlated with her receptivity to those messages. In particular, it collects:
 
-- when the participant visits one of the websites from a pre-defined set.
-- the hostname (e.g. facebook.com, maps.google.com) of the website that the participant visits should a notification be shown
+- visits to the designated set of websites (only the top-level hostnames will be collected, e.g. www.facebook.com)
 - the participant's interaction with the notification
 - Firefox usage metrics that are likely to be correlated with the participant's receptivity to the notifications, including:
 	-- profile age
