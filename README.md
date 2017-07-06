@@ -22,3 +22,5 @@ The `internet-policy-awareness` extension collects a participant's Firefox usage
 NOTE: no data is collected in private browsing mode
 
 The collected data is transferred through Shield [Telemetry](https://wiki.mozilla.org/T\elemetry) pings to Mozilla along with the usual [environment ping](http://gecko.readthedocs.io/en/latest/toolkit/components/telemetry/telemetry/data/environment.html) data from Telemetry. 
+
+The schema for messages sent to Telemetry can be found [here](https://github.com/raymak/shield-internet-policy-awareness/blob/master/schemas/schema.json).
