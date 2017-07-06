@@ -8,6 +8,7 @@ When the user visits certain websites that are in support of healthy internet po
 The `internet-policy-study` extension collects a participant's Firefox usage data that is related to her interaction with the messages, as well as metrics that could be correlated with her receptivity to those messages. In particular, it collects:
 
 - visits to the designated set of websites (only the top-level hostnames will be collected, e.g. www.facebook.com)
+	-- the list of websites is a subset of the participants list found here: https://www.battleforthenet.com/july12/
 - the participant's interaction with the notification
 - Firefox usage metrics that are likely to be correlated with the participant's receptivity to the notifications, including:
 	-- profile age
