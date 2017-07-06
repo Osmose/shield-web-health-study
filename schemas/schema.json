@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "internet-policy-awareness",
+  "description": "internet-policy-awareness data sent as Map(s,s).",
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/study_status"
+    },
+    {
+      "$ref": "#/definitions/notification_instance"
+    },
+    {
+      "$ref": "#/definitions/notification_sequence"
+    }
+  ],
+  "definitions": {
+    "strbool": {
+        "type": "string",
+        "enum": ["true", "false"]
+      },
+    "branch_frequency": {
+      "type": "string",
+      "enum": ["once", "multiple"]
+    },
+    "branch_message": {
+      "type": "string",
+      "enum": ["message1", "message2"]
+    },
+    "notification_result": {
+      "type": "string",
+      "enum": ["close", "dismiss", "action", "timeout"]
+    },
+    "experiment_status": {
+      "type": "string",
+      "enum": ["enrolled", "treatment", "active", "observation", "end", "user-disable"]
+    },
+    "study_status": {
+      "properties": {
+        "messsage_type": {
+          "type": "string",
+          "enum": ["study_status"]
+        },
+        "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
+        "branch_message": {"$ref": "#/definitions/branch_message"},
+        "profile_tabs_open": {"type": "string"},
+        "profile_windows_open": {"type": "string"},
+        "profile_extension_count": {"type": "string"},
+        "profile_theme_count": {"type": "string"},
+        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
+        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
+        "elapsed_time": {"type": "string"},
+        "status": {"$ref": "#/definitions/experiment_status"}
+      },
+      "additionalProperties": false,
+      "minProperties": 11
+    },
+    "notification_instance": {
+      "properties": {
+        "messsage_type": {
+          "type": "string",
+          "enum": ["notification_instance"]
+        },
+        "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
+        "branch_message": {"$ref": "#/definitions/branch_message"},
+        "profile_tabs_open": {"type": "string"},
+        "profile_windows_open": {"type": "string"},
+        "profile_extension_count": {"type": "string"},
+        "profile_theme_count": {"type": "string"},
+        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
+        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
+        "elapsed_time": {"type": "string"},
+        "status": {"$ref": "#/definitions/experiment_status"},
+        "result": {"$ref": "#/definitions/notification_result"},
+        "form_submitted": {"$ref": "#definitions/strbool"},
+        "host_name": {"type": "string"},
+        "count": {"type": "string"},
+        "show_length": {"type": "string"}
+      },
+      "additionalProperties": false,
+      "minProperties": 16
+    },
+    "notification_sequence": {
+      "properties": {
+        "messsage_type": {
+          "type": "string",
+          "enum": ["notification_sequence"]
+        },
+        "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
+        "branch_message": {"$ref": "#/definitions/branch_message"},
+        "profile_tabs_open": {"type": "string"},
+        "profile_windows_open": {"type": "string"},
+        "profile_extension_count": {"type": "string"},
+        "profile_theme_count": {"type": "string"},
+        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
+        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
+        "elapsed_time": {"type": "string"},
+        "status": {"$ref": "#/definitions/experiment_status"},
+        "length": {"type": "string"},
+        "average_frequency": {"type": "string"},
+        "last_result": {"$ref": "#/definitions/notification_result"}
+      },
+      "additionalProperties": false,
+      "minProperties": 16
+    }
+  }
+}
