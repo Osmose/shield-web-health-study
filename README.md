@@ -10,14 +10,6 @@ The `internet-policy-study` extension collects a participant's Firefox usage dat
 - visits to the designated set of websites (only the top-level hostnames will be collected, e.g. www.facebook.com)
 	-- the list of websites is a subset of the participants list found here: https://www.battleforthenet.com/july12/
 - the participant's interaction with the notification
-- Firefox usage metrics that are likely to be correlated with the participant's receptivity to the notifications, including:
-	-- profile age
-	-- number of open tabs
-	-- number of open windows
-	-- number of active extensions and themes
-	-- if Firefox is the default browser
-	-- whether or not the Do Not Track feature is on
-
 
 NOTE: no data is collected in private browsing mode
 
