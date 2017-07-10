@@ -1,4 +1,4 @@
-# Internet Policy Awareness Study
+# Web Health Study
 This repository hosts a [Shield study](https://wiki.mozilla.org/Firefox/Shield/Shield_Studies) that is designed to understand what the best way to raise awareness around policies that govern the way the Internet works.
 
 ## Task
