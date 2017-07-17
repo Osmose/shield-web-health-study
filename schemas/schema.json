@@ -29,7 +29,7 @@
     },
     "notification_result": {
       "type": "string",
-      "enum": ["close", "dismiss", "action", "timeout"]
+      "enum": ["close", "dismiss", "action", "timeout", "noresult"]
     },
     "experiment_status": {
       "type": "string",

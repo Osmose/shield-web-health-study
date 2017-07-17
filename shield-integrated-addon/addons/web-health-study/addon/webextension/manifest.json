@@ -1,0 +1,15 @@
+{
+	"background": {
+		"scripts": ["background/main.js"]
+	},
+  	"page_action": {
+  		"default_icon": "presentation/images/moz-social-bw-rgb.png",
+    	"default_title": "Net Neutrality",
+    	"default_popup": "presentation/html/doorhanger.html"
+  	},
+	"description": "A study of users' awareness of web health issues",
+	"manifest_version": 2,
+	"name": "Web Health Study",
+	"permissions": ["management", "*://*.mozilla.org/*", "webNavigation", "tabs", "alarms", "storage"],
+	"version": "0.1"
+}
