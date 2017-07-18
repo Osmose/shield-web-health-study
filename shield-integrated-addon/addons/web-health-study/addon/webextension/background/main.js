@@ -40,7 +40,7 @@ const SILENCE_LENGTHS_HOURS = {
 }
 
 const BASE_SURVEY_URL = 'https://qsurvey.mozilla.com/s3/Understanding-the-Web-Shield-Study'
-const BASE_FORM_URL= "https://advocacy.mozilla.org/en-US/net-neutrality-comments-simple/?test=true"
+const BASE_FORM_URL= "https://advocacy.mozilla.org/en-US/net-neutrality-comments-simple/"
 
 let TREATMENT_STAGE_LENGTH = 2 * 7 * 24 * 60 * 60// in seconds
 let OBSERVATION_STAGE_LENGTH = 2 * 7 * 24 * 60 * 60// in seconds
@@ -122,6 +122,7 @@ class Notification {
     this.showLength = 0 // not used yet
     this.openCount = 0
     this.result = 'noresult'
+    this.reported = false
   }
 }
 
@@ -150,6 +151,8 @@ class NetNeutralityStudy {
       await this.changeStage('treatment')
       this.reportStatus('enrolled')
     }
+
+    this.concludeNotification()
 
     this.checkStage()
 
@@ -210,6 +213,9 @@ class NetNeutralityStudy {
       'profile_tabs_open': String(tabs_open),
       'profile_windows_open': String(windows_open),
       'elapsed_time': String(this.elapsedTime),
+      'notification_count': String(this.notificationSummary.notification_count),
+      'response_action': String(this.notificationSummary.response_action),
+      'response_dismiss': String(this.notificationSummary.response_dismiss),
       'stage': String(this.stage),
       'status': String(status)
     })
@@ -242,7 +248,6 @@ class NetNeutralityStudy {
     return l.hostname;
   }
   isADesignatedUrl(url){
-    console.log(`hostname: ${this.getHostname(url)}`)
     return (DESIGNATED_HOSTNAMES.indexOf(this.getHostname(url)) != -1)
   }
   listenForUrls(){
@@ -370,6 +375,8 @@ class NetNeutralityStudy {
     self.port.emit('show-notification')
     await browser.storage.local.set({notificationdata: this.notificationData})
     this.initiateNotificationTimeout();
+    this.notificationSummary.notification_count = this.notificationSummary.notification_count + 1
+    browser.storage.local.set({notificationsummary: this.notificationSummary})
 
     let that = this
 
@@ -380,6 +387,12 @@ class NetNeutralityStudy {
       }
     }
     browser.tabs.onUpdated.addListener(listener) // send notification data when it has to hide
+
+    listener = function(id, info){
+      if (id == tabId)
+        that.concludeNotification()
+    }
+    browser.tabs.onRemoved.addListener(listener)
   }
   initiateNotificationTimeout(){
     window.setTimeout(()=>{
@@ -397,6 +410,11 @@ class NetNeutralityStudy {
     updateRecentNotification('infoPage', true)
   }
   concludeNotification(){
+
+    // can be safely called multiple times
+    
+    if (!this.recentNotification || this.recentNotification.reported) return
+
     console.log('concluding the notification')
     let rn = this.recentNotification
 
@@ -427,6 +445,7 @@ class NetNeutralityStudy {
       'open_count': String(rn.openCount),
       'show_length': 'none'
     })
+    this.updateRecentNotification('reported', true)
   }
   async reportNotificationSequence(){
     let rn = this.recentNotification 
@@ -443,6 +462,7 @@ class NetNeutralityStudy {
       'stage': String(this.stage),
       'length': String(this.notificationData.length),
       'response_action': String(this.notificationSummary.response_action),
+      'response_dismiss': String(this.notificationSummary.response_dismiss),
       'average_frequency': String(this.notificationData.length/this.elapsedTimeSeconds),
       'last_result': this.recentNotification.result
     })

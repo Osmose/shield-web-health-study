@@ -24,7 +24,7 @@
     "onchange": "^3.2.1"
   },
   "addon": {
-    "version": "0.0.2",
+    "version": "1.0.0",
     "id": "web-health-study@shield.mozilla.com",
     "name": "Web Health Study",
     "minVersion": "53.0",
