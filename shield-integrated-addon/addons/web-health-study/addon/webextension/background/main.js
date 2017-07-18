@@ -29,12 +29,13 @@ const DESIGNATED_HOSTNAMES = ['www.amazon.com', 'www.etsy.com', 'www.kickstarter
 const MESSAGES = {
   c: '',
   vi: 'Net neutrality is one of the biggest First Amendment issues of the Internet. Without it, voices could be censored.',
-  sice: '{domain} supports net neutrality, because they want the internet to stay open and free.',
-  simo: 'Three quarters of Americans (76%) support net neutrality, including  the vast majority of Democrats and Republicans.'
+  sice: '{domain} supports net neutrality, because they want the Internet to stay open and free.',
+  simo: 'Three quarters of Americans (76%) support net neutrality, including  the vast majority of Democrats and Republicans.',
+  atsi: 'Without net neutrality, {domain} could run slower in the future and be harder to access.'
 }
 const SILENCE_LENGTHS_HOURS = {
   r1: Infinity,
-  r2: 7*24,
+  r2: 5*24,
   r4: 3*24,
   r14: 2*24
 }
@@ -45,7 +46,7 @@ const BASE_FORM_URL= "https://advocacy.mozilla.org/en-US/net-neutrality-comments
 let TREATMENT_STAGE_LENGTH = 2 * 7 * 24 * 60 * 60// in seconds
 let OBSERVATION_STAGE_LENGTH = 2 * 7 * 24 * 60 * 60// in seconds
 
-const PANEL_TIMEOUT = 25*1000
+const PANEL_TIMEOUT = 35*1000
 
 const NOTIFICATION_TITLE = 'Take Action on Net Neutrality';
 
