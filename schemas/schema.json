@@ -21,11 +21,15 @@
       },
     "branch_frequency": {
       "type": "string",
-      "enum": ["once", "multiple"]
+      "enum": ["r1", "r2", "r4", "r14"]
     },
     "branch_message": {
       "type": "string",
-      "enum": ["message1", "message2"]
+      "enum": ["c", "vi", "sice", "simo", "atsi"]
+    },
+    "branch": {
+    	"type": "string",
+    	"enum": ["r1-c", "r2-c", "r4-c", "r14-c", "r1-vi", "r2-vi", "r4-vi", "r14-vi", "r1-sice", "r2-sice", "r4-sice", "r14-sice", "r1-simo", "r2-simo", "4-simo", "r14-simo", "r1-atsi", "r2-atsi", "r4-atsi", "r14-atsi"]
     },
     "notification_result": {
       "type": "string",
@@ -35,6 +39,10 @@
       "type": "string",
       "enum": ["enrolled", "treatment", "active", "observation", "end", "user-disable"]
     },
+    "experiment_stage": {
+      "type": "string",
+      "enum": ["treatment", "observation", "end"]
+    },
     "study_status": {
       "properties": {
         "messsage_type": {
@@ -43,17 +51,18 @@
         },
         "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
         "branch_message": {"$ref": "#/definitions/branch_message"},
+        "branch": {"$ref": "#/definitions/branch"},
         "profile_tabs_open": {"type": "string"},
         "profile_windows_open": {"type": "string"},
-        "profile_extension_count": {"type": "string"},
-        "profile_theme_count": {"type": "string"},
-        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
-        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
         "elapsed_time": {"type": "string"},
+        "notifiation_count": {"type": "string"},
+        "response_action": {"type": "strbool"},
+        "response_dismiss": {"type": "strbool"},
+        "stage": {"$ref": "#/definitions/experiment_stage"},
         "status": {"$ref": "#/definitions/experiment_status"}
       },
       "additionalProperties": false,
-      "minProperties": 11
+      "minProperties": 12
     },
     "notification_instance": {
       "properties": {
@@ -63,22 +72,24 @@
         },
         "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
         "branch_message": {"$ref": "#/definitions/branch_message"},
+        "branch": {"$ref": "#/definitions/branch"},
         "profile_tabs_open": {"type": "string"},
         "profile_windows_open": {"type": "string"},
-        "profile_extension_count": {"type": "string"},
-        "profile_theme_count": {"type": "string"},
-        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
-        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
         "elapsed_time": {"type": "string"},
-        "status": {"$ref": "#/definitions/experiment_status"},
+        "stage": {"$ref": "#/definitions/experiment_stage"},
         "result": {"$ref": "#/definitions/notification_result"},
-        "form_submitted": {"$ref": "#definitions/strbool"},
+        "response_action": {"type": "strbool"},
+        "response_dismiss": {"type": "strbool"},
+        "close": {"$ref": "#definitions/strbool"},
+        "infoPage": {"$ref": "#definitions/strbool"},
+        "form_submitted": {"type": "string"},
         "host_name": {"type": "string"},
         "count": {"type": "string"},
+        "open_count": {"type": "string"},
         "show_length": {"type": "string"}
       },
       "additionalProperties": false,
-      "minProperties": 16
+      "minProperties": 18
     },
     "notification_sequence": {
       "properties": {
@@ -88,20 +99,19 @@
         },
         "branch_frequency": {"$ref": "#/definitions/branch_frequency"},
         "branch_message": {"$ref": "#/definitions/branch_message"},
+        "branch": {"$ref": "#/definitions/branch"},
         "profile_tabs_open": {"type": "string"},
         "profile_windows_open": {"type": "string"},
-        "profile_extension_count": {"type": "string"},
-        "profile_theme_count": {"type": "string"},
-        "profile_is_default_browser": {"$ref": "#/definitions/strbool"},
-        "profile_is_dnt_enabled": {"$ref": "#definitions/strbool"},
         "elapsed_time": {"type": "string"},
-        "status": {"$ref": "#/definitions/experiment_status"},
+        "stage": {"$ref": "#/definitions/experiment_stage"},
         "length": {"type": "string"},
+        "response_action": {"type": "strbool"},
+        "response_dismiss": {"type": "strbool"},       
         "average_frequency": {"type": "string"},
         "last_result": {"$ref": "#/definitions/notification_result"}
       },
       "additionalProperties": false,
-      "minProperties": 16
+      "minProperties": 13
     }
   }
 }
